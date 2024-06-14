@@ -1,0 +1,89 @@
+{
+    "roles": [
+       
+        {
+            "name": "nurse",
+            "permissions": [
+                "read_patient_record",
+                "update_patient_record",
+                "create_prescription",
+                "schedule_appointment",
+                "order_lab_tests"
+            ]
+        },
+        {
+            "name": "patient",
+            "permissions": [
+                "create_record",
+                "read_record",
+                "update_personal_information"
+            ]
+        },
+        {
+            "name": "pediatrician",
+            "permissions": [
+                "read_patient_record",
+                "update_patient_record",
+                "create_prescription",
+                "schedule_appointment"
+            ]
+        },
+        {
+            "name": "gynecologist",
+            "permissions": [
+                "read_patient_record",
+                "update_patient_record",
+                "create_prescription",
+                "schedule_appointment"
+            ]
+        },
+        {
+            "name": "ophthalmologist",
+            "permissions": [
+                "read_patient_record",
+                "update_patient_record",
+                "create_prescription",
+                "schedule_appointment"
+            ]
+        },
+        {
+            "name": "general_practitioner",
+            "permissions": [
+                "read_patient_record",
+                "update_patient_record",
+                "create_prescription",
+                "schedule_appointment",
+                "refer_specialist"
+            ]
+        },
+        {
+            "name": "dentist",
+            "permissions": [
+                "read_patient_record",
+                "update_patient_record",
+                "create_prescription",
+                "perform_dental_procedure",
+                "schedule_appointment"
+            ]
+        },
+        {
+            "name": "physiotherapist",
+            "permissions": [
+                "read_patient_record",
+                "update_patient_record",
+                "create_therapy_plan",
+                "schedule_appointment"
+            ]
+        },
+        {
+            "name": "oncologist",
+            "permissions": [
+                "read_patient_record",
+                "update_patient_record",
+                "create_treatment_plan",
+                "schedule_appointment",
+                "order_lab_tests"
+            ]
+        }
+    ]
+}
