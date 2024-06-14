@@ -8,6 +8,14 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const User = require("./models/user.model");
 const authRoute = require("./routes/auth.route");
+const pediatricianRoute = require("./routes/paeditrician.route");
+const gynecologistRoute = require("./routes/gynecologist.route");
+const ophthalmologistRoute = require("./routes/opthamologist.route");
+const generalPractitionerRoute = require("./routes/generalPractitioner.route");
+const dentistRoute = require("./routes/dentist.route");
+const physiotherapistRoute = require("./routes/physiotherapist.route");
+const oncologistRoute = require("./routes/oncologist.route");
+const patientRoute = require("./routes/patient.route");
 
 dotenv.config();
 
@@ -51,23 +59,27 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRoute);
+app.use("/patients", patientRoute);
+app.use("/pediatricians", pediatricianRoute);
+app.use("/gynecologists", gynecologistRoute);
+app.use("/ophthalmologists", ophthalmologistRoute);
+app.use("/general-practitioners", generalPractitionerRoute);
+app.use("/dentists", dentistRoute);
+app.use("/physiotherapists", physiotherapistRoute);
+app.use("/oncologists", oncologistRoute);
 
 // MongoDB connection
-(async () => {
-  try {
-    await mongoose.connect(process.env.DATABASE_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+mongoose
+  .connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
     console.log("Connected to MongoDB");
-
-    // Start the server after successful DB connection
-    app.listen(3000, () => {
-      console.log("Server is running on port 3000");
-      // List endpoints
-      console.log(listEndpoints(app));
-    });
-  } catch (err) {
+  })
+  .catch((err) => {
     console.error("Error connecting to MongoDB:", err.message);
-  }
-})();
+  });
+
+  // List endpoints
+console.log(listEndpoints(app));

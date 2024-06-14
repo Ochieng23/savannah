@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const { isValidUserId } = require("../validators/userValidator");
 const patientSchema = new mongoose.Schema(
   {
     user_id: {
@@ -7,6 +7,10 @@ const patientSchema = new mongoose.Schema(
       ref: "User",
       required: true,
       unique: true,
+      validate: {
+        validator: isValidUserId,
+        message: (props) => `${props.value} is not a valid user ID`,
+      },
     },
     avatar: {
       type: String,
