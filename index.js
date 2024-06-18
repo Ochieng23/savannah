@@ -5,7 +5,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const listEndpoints = require("express-list-endpoints");
 const dotenv = require("dotenv");
-const helmet = require("helmet");
+
 const User = require("./models/user.model");
 const authRoute = require("./routes/auth.route");
 const pediatricianRoute = require("./routes/paeditrician.route");
@@ -16,18 +16,17 @@ const dentistRoute = require("./routes/dentist.route");
 const physiotherapistRoute = require("./routes/physiotherapist.route");
 const oncologistRoute = require("./routes/oncologist.route");
 const patientRoute = require("./routes/patient.route");
+const cors = require("cors");
 
+const app = express();
+app.use(cors());
 dotenv.config();
+app.use(express.json());
 
 if (!process.env.DATABASE_URL || !process.env.SESSION_SECRET) {
   console.error("Missing necessary environment variables.");
   process.exit(1);
 }
-
-const app = express();
-
-// Security middleware
-app.use(helmet());
 
 // Middleware setup
 app.use(express.json());
@@ -81,5 +80,11 @@ mongoose
     console.error("Error connecting to MongoDB:", err.message);
   });
 
-  // List endpoints
+// List endpoints
 console.log(listEndpoints(app));
+
+// Server setup
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

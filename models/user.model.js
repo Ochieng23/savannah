@@ -30,7 +30,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: [
-        
         "patient",
         "pediatrician",
         "gynecologist",
@@ -39,6 +38,7 @@ const userSchema = new mongoose.Schema(
         "dentist",
         "physiotherapist",
         "oncologist",
+        "cardiologist",
       ],
     },
     geoLocation: {
